@@ -20,7 +20,7 @@ def RandomQuotes():
 
     return l
 
-BOT_TOKEN = '8037922129:AAGaXHrOllzBxEyZyxFa02FedQbgBk1cU8Y'
+BOT_TOKEN = 'ВАШ_ТОКЕН'
 bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
