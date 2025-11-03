@@ -198,4 +198,17 @@ def get_text(message):
     elif (message.text == "Удалить цитату"):
         DeleteQuotes(message.from_user.id)
 
+@bot.message_handler(content_types=['web_app_data'])
+def handle_web_app_data(web_app_message):
+    try:
+
+        if web_app_message == "1":
+            bot.send_message(web_app_message.chat.id, "hi")
+        else:
+            bot.send_message(web_app_message.chat.id, "❌ Жанр не найден. Попробуйте еще раз.")
+
+    except Exception as e:
+        print(f"Ошибка: {e}")
+        bot.send_message(web_app_message.chat.id, "❌ Произошла ошибка. Попробуйте еще раз.")
+
 bot.polling(none_stop=True, interval=0)
