@@ -151,6 +151,7 @@ def InputDeleteMessage(message):
 #----------------------------------------------------------------------------------------------------------------
 BOT_TOKEN = '8037922129:AAGaXHrOllzBxEyZyxFa02FedQbgBk1cU8Y'
 bot = telebot.TeleBot(BOT_TOKEN)
+web_app = types.WebAppInfo(url="https://sgifch.github.io/Random-quote-USSR-chat-bot/")
 
 @bot.message_handler(commands=['start'])
 def start(message):
