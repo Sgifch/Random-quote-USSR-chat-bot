@@ -101,8 +101,14 @@ def DeleteQuotes(id):
         bot.send_message(id, "Пока я не могу удалять записи :(. Попробуйте создать новую запись")
         return
     
-    
-
+def GetDescriptionFilm(id):
+    connection = sqlite3.connect('QuotesUSSR.db')
+    cursor = connection.cursor()
+    s = 'SELECT * FROM AboutFilms WHERE ID = ' + str(id)
+    cursor.execute(s)
+    l = cursor.fetchall()
+    msg = l[0][1] + "\n" + l[0][2]
+    return msg
 
 #Обработка сообщений-------------------------------------------------------------------------------------------
 #Чтение первого сообщения
@@ -169,9 +175,10 @@ def get_text(message):
         btn3 = types.KeyboardButton("Добавить свою цитату")
         btn4 = types.KeyboardButton("Просмотреть все цитаты")
         btn5 = types.KeyboardButton("Удалить цитату")
+        btn6 = types.KeyboardButton("Выбрать фильм", web_app=web_app)
         markup.add(btn2, btn3)
         markup.add(btn4)
-        markup.add(btn5)
+        markup.add(btn5, btn6)
         bot.send_message(message.from_user.id, "Ну что ж, приступим 🎉!", reply_markup=markup)
     
     elif (message.text == "Случайная цитата"):
@@ -201,15 +208,16 @@ def get_text(message):
 
 @bot.message_handler(content_types=['web_app_data'])
 def handle_web_app_data(web_app_message):
+    print("Получен запрос")
+
+    item = web_app_message.web_app_data.data
+
     try:
-
-        if web_app_message == "1":
-            bot.send_message(web_app_message.chat.id, "hi")
-        else:
-            bot.send_message(web_app_message.chat.id, "❌ Жанр не найден. Попробуйте еще раз.")
-
+        msg = GetDescriptionFilm(item)
     except Exception as e:
-        print(f"Ошибка: {e}")
-        bot.send_message(web_app_message.chat.id, "❌ Произошла ошибка. Попробуйте еще раз.")
+        print (e)
+        msg = "Ошибка :("
+
+    bot.send_message(web_app_message.chat.id, msg)
 
 bot.polling(none_stop=True, interval=0)
