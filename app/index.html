@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang = "ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Больше о фильмах</title>
+    </head>
+
+    <style>
+        body {
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+
+        button{
+            width: 100%;  
+            display: block;  
+            box-sizing: border-box; 
+            background-color: #cc4728;
+            border-color: #cc4728;
+            color: #ffffff;
+            height: 30px;
+        }
+
+        .button-content{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <body>
+        <div class="button-content">
+            <button id = "btn1">«Иван Васильевич меняет профессию»</button>
+        </div>
+        <div class="button-content">
+            <button id = "btn2">«Бриллиантовая рука»</button>
+        </div>
+        <div class="button-content">
+            <button id = "btn3">«Двенадцать стульев»</button>
+        </div>
+        <div class="button-content">
+            <button id = "btn4">«Любовь и голуби»</button>
+        </div>
+    </body>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
+</html>
